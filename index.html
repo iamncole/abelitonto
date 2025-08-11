@@ -76,27 +76,23 @@
 <div class="overlay">
   <div class="center-message">𝔞𝔟𝔢𝔩𝔦𝔱𝔬💖</div>
 </div>
-<img id="cursor" class="heart-cursor" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmY2OWI0IiBkPSJNNDcuNiAyNUMyNS4xIDI1IDcgNDMuMSA3IDY1LjZDNyA4OC4xIDI0LjMgMTI3IDkzLjUgMTU3LjVjNjkuMiAzMC41IDE0Ni4zIDY0LjEgMTYxLjUgODQuMSAxNS4yLTIwIDEwMC4xLTUzLjYgMTY5LjMtODQuMSA2OS4yLTMwLjUgODYuNS02OS40IDg2LjUtOTEuOSAwLTIyLjUtMTguMS00MC42LTQwLjYtNDAuNnMtNDAuNiAxOC4xLTQwLjYgNDAuNmMwIDguMSAxLjYgMTUuNSA0LjMgMjIuMi0zLjEgMi4yLTYuNyAzLjUtMTAuNyAzLjUtMTMuOCAwLTI1LTExLjItMjUtMjVzMTEuMi0yNSAyNS0yNWM4LjEgMCAxNS41IDMuOSAyMC4yIDEwLjIgMTEuNy0xNS4yIDE4LjgtMzQuMiAxODgtNTUuMiAwLTQ1LjktMzcuMi04My4xLTgzLjEtODMuMXMtODMuMSAzNy4yLTgzLjEgODMuMWMwIDE2LjMgNC43IDMxLjUgMTIuOCA0NC4zLTEuMiAxLjEtMi42IDIuMS00LjEgMi45LTE0LjMgNy44LTI2IDE0LjktMzYuMiAyMC4yQzEwOS4zIDEyMS41IDQ3LjYgODguMSA0Ny42IDY1LjZzMTguMS00MC42IDQwLjYtNDAuNkMxMDkuMyAyNSA3NyA0My4xIDc3IDY1LjZzMzIuMyA0MC42IDMyLjMgNDAuNlMxNzAuMSAyNSA0Ny42IDI1eiIvPjwvc3ZnPg==" alt="heart">
-
+<img id="cursor" class="heart-cursor" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmY2OWI0IiBkPSJNNDcuNiAyNUMyNS4..." />
 <audio id="audio-control" loop>
   <source src="musica.mp3" type="audio/mpeg">
   Tu navegador no soporta el elemento de audio.
 </audio>
-
 <script>
   const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
   const colors = ['#ff69b4', '#ff1493', '#ffa07a', '#ffc0cb', '#db7093', '#ffb6c1', '#ffffe0', '#ffe4e1'];
-  
+
   document.addEventListener('DOMContentLoaded', function() {
     const audio = document.getElementById('audio-control');
-    
     function playAudio() {
       audio.volume = 0.8;
       audio.play().catch(error => {
         console.log('Error al reproducir audio:', error);
       });
     }
-    
     document.body.addEventListener(isTouchDevice ? 'touchstart' : 'click', function() {
       playAudio();
     });
@@ -116,11 +112,9 @@
       cursor.style.top = `${e.clientY - 16}px`;
       cursor.style.transform = `scale(${1 + Math.sin(Date.now()/300)*0.05})`;
     });
-
     document.addEventListener('mousedown', () => {
       cursor.style.transform = 'scale(0.8)';
     });
-    
     document.addEventListener('mouseup', () => {
       cursor.style.transform = 'scale(1.1)';
       setTimeout(() => {
@@ -129,11 +123,11 @@
     });
   }
 
-  // Efecto Matrix de amor - TAMAÑO AUMENTADO
+  // Efecto Matrix de amor
   const text = "TE AMO";
-  const baseFontSize = isTouchDevice ? 36 : 64; // Tamaño de fuente aumentado
-  const fontSizeMultiplier = isTouchDevice ? 2.5 : 3; // Multiplicador aumentado
-  const columns = Math.floor(canvas.width / (baseFontSize * 1.5)); // Ajuste de columnas
+  const baseFontSize = isTouchDevice ? 36 : 64;
+  const fontSizeMultiplier = isTouchDevice ? 2.5 : 3;
+  const columns = Math.floor(canvas.width / (baseFontSize * 1.5));
   const drops = new Array(columns).fill(1);
 
   ctx.font = `bold ${baseFontSize}px monospace`;
@@ -141,22 +135,18 @@
   function drawMatrix() {
     ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     ctx.fillStyle = "#ff69b4";
     for (let i = 0; i < drops.length; i++) {
       const x = i * baseFontSize * 1.5;
       const y = drops[i] * baseFontSize;
-      
       ctx.shadowColor = "rgba(255, 105, 180, 0.7)";
-      ctx.shadowBlur = 15; // Aumentado el blur para mejor efecto
+      ctx.shadowBlur = 15;
       ctx.fillText(text, x, y);
-      
       ctx.shadowBlur = 0;
       ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
       ctx.lineWidth = 2;
       ctx.strokeText(text, x, y);
       ctx.fillText(text, x, y);
-
       if (y > canvas.height && Math.random() > 0.992) {
         drops[i] = 0;
       }
@@ -164,21 +154,17 @@
     }
   }
 
-  // Partículas y fuegos artificiales
-  let particles = [];
+  // Corazones flotando
   const hearts = [];
-  const fireworks = [];
-
   function createHeart() {
     hearts.push({
       x: Math.random() * canvas.width,
       y: canvas.height + 20,
-      size: 24 + Math.random() * 20, // Tamaño aumentado
+      size: 24 + Math.random() * 20,
       speed: 1 + Math.random() * 1.5,
       opacity: 0.5 + Math.random() * 0.5
     });
   }
-
   function drawHearts() {
     hearts.forEach((h, index) => {
       ctx.globalAlpha = h.opacity;
@@ -191,6 +177,8 @@
     ctx.globalAlpha = 1;
   }
 
+  // Fuegos artificiales
+  const fireworks = [];
   function createExplosion(x, y) {
     const count = 30 + Math.floor(Math.random() * 30);
     for (let i = 0; i < count; i++) {
@@ -203,11 +191,10 @@
         alpha: 1,
         color: colors[Math.floor(Math.random() * colors.length)],
         text: "TE AMO",
-        size: 24 + Math.random() * 20 // Tamaño aumentado
+        size: 24 + Math.random() * 20
       });
     }
   }
-
   function createFirework() {
     const count = 20 + Math.floor(Math.random() * 30);
     const x = Math.random() * canvas.width;
@@ -221,11 +208,10 @@
         dy: Math.sin(angle) * speed,
         alpha: 1,
         color: colors[Math.floor(Math.random() * colors.length)],
-        size: 3 + Math.random() * 3 // Tamaño aumentado
+        size: 3 + Math.random() * 3
       });
     }
   }
-
   function drawFireworks() {
     fireworks.forEach((p, index) => {
       ctx.globalAlpha = p.alpha;
@@ -246,18 +232,36 @@
     ctx.globalAlpha = 1;
   }
 
-  const handleInteraction = (e) => {
+  function handleInteraction(e) {
     const x = isTouchDevice ? e.touches[0].clientX : e.clientX;
     const y = isTouchDevice ? e.touches[0].clientY : e.clientY;
-    
-    // Crear explosión en el punto de interacción
     createExplosion(x, y);
-    
-    // Crear partículas de amor
-    const directions = [
-      {x: 0, y: -1},
-      {x: 0, y: 1},
-      {x: -1, y: 0},
-      {x: 1, y: 0}
-    ];
+  }
+
+  if (isTouchDevice) {
+    document.addEventListener('touchstart', handleInteraction);
+  } else {
+    document.addEventListener('mousedown', handleInteraction);
+  }
+
+  // Animación principal
+  function animate() {
+    drawMatrix();
+    if (Math.random() < 0.18) createHeart();
+    drawHearts();
+    if (Math.random() < 0.03) createFirework();
+    drawFireworks();
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Redimensionar canvas si cambia el tamaño de la ventana
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    ctx.font = `bold ${baseFontSize}px monospace`;
+  });
+</script>
+</body>
+</html>
     
